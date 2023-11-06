@@ -1,6 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import Github from "../images/svg/github.inline.svg";
 
 const Projects = () => {
   const data = useStaticQuery(graphql`
@@ -47,17 +48,21 @@ const Projects = () => {
                 return (
                     <div style={{display: 'flex', flexDirection: 'column', width: '33%'}} key={i}>
                       <h3>
-                        <a href={external}>{title}</a>
+                        <a href={external} target="_blank" rel="noreferrer" >{title}</a>
                       </h3>
 
                       <div
                           dangerouslySetInnerHTML={{ __html: html }}
                       />
-
                       <GatsbyImage style={{height: 320}} image={image} alt={title} />
                       {tech.length && (
-                          <ul style={{display: 'flex', listStyle: 'none', justifyContent: 'space-around', padding: 0}}>
-                            {tech.map((tech, i) => (
+                          <ul style={{display: 'flex', listStyle: 'none', justifyContent: 'space-around', padding: 0, alignItems: 'center'}}>
+                              {github && (
+                                  <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer" >
+                                      <Github width={24} height={24}/>
+                                  </a>
+                              )}
+                              {tech.map((tech, i) => (
                                 <li key={i}>{tech}</li>
                             ))}
                           </ul>
